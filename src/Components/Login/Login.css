@@ -1,0 +1,29 @@
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fullHeight {
+    height: 100vh;
+}
+
+.flexCenterColumn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.paperPadding {
+    padding: 40px 60px;
+}
+
+.emailInput {
+    margin-top: 20px!important;
+    margin-bottom: 10px!important;
+}
+
+.passInput {
+    margin-bottom: 20px!important;
+}
