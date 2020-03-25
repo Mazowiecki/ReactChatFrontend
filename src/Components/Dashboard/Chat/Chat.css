@@ -1,7 +1,17 @@
-.flexCenter {
+.chatFlexCenter {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 70px;
+}
+
+.chatPostOwner {
+    align-self: flex-end;
+}
+
+.chatPostNoOwner {
+    align-self: flex-start;
 }
 
 .fullHeight {
