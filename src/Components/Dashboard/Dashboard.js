@@ -1,20 +1,38 @@
-import React from 'react';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
+import React, {useEffect, useState} from 'react';
 import './Dashboard.css';
 import Navigation from "./Navigation/Navigation";
+import {useSelector} from "react-redux";
+import Chat from "./Chat/Chat";
 
 const Dashboard = () => {
+    const userData = useSelector(state => state.currentUser);
+    const token = localStorage.getItem('token');
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        getPosts();
+    },[]);
+
+    const getPosts = () => {
+        fetch('http://localhost:5000/getPosts', {
+            crossDomain: true,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            }
+
+        })
+            .then(response => response.json())
+            .then(res => {
+                setPosts(res.response)
+            });
+    };
+
     return (
         <>
-            <Navigation/>
-            <Container fixed>
-                <div className="flexCenter fullHeight">
-                    <Paper className='paperStyles paperPadding' elevation={3}>
-                        hfjksdhfjkhjksd
-                    </Paper>
-                </div>
-            </Container>
+            <Navigation userData={userData}/>
+            <Chat posts={posts}/>
         </>
     );
 };

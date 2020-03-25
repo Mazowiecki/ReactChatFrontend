@@ -3,8 +3,9 @@ import './Navigation.css';
 import Button from '@material-ui/core/Button';
 import {useHistory} from 'react-router-dom';
 
-const Navigation = () => {
+const Navigation = props => {
     const history = useHistory();
+
     const handleLogOut = () => {
         localStorage.removeItem('token');
         history.push('/');
@@ -12,7 +13,7 @@ const Navigation = () => {
 
     return (
         <nav>
-            <p>Hello MAN</p>
+            <p>Hello {props.userData.email}</p>
             <Button onClick={handleLogOut} type="button" variant="outlined">Logout</Button>
         </nav>
     );

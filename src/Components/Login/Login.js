@@ -5,6 +5,8 @@ import './Login.css';
 import {TextField} from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {useHistory} from 'react-router-dom';
+import {useDispatch} from "react-redux";
+import {setCurrentUserDate} from "../../Redux/actions";
 
 const Login = () => {
     const [loginStatus, setloginStatus] = useState('');
@@ -12,6 +14,7 @@ const Login = () => {
     const [password, setPassword] = useState('');
 
     const history = useHistory();
+    const dispach = useDispatch();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -36,6 +39,7 @@ const Login = () => {
                 setloginStatus(res.status);
                 if (res.token) {
                     localStorage.setItem('token', res.token);
+                    dispach(setCurrentUserDate(res.user[0]));
                     history.push('/dashboard');
                 }
             });
@@ -73,7 +77,8 @@ const Login = () => {
                                     setPassword(event.target.value);
                                 }}
                             />
-                            <p>Don't have an account yet? <a onClick={() => history.push('/register')}>Click here</a></p>
+                            <p>Don't have an account yet? <a onClick={() => history.push('/register')}>Click here</a>
+                            </p>
                             <Button disabled={!password || !email} type="submit" variant="outlined">Login</Button>
                         </div>
                     </form>
