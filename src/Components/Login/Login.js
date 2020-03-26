@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {setCurrentUserDate} from "../../Redux/actions";
+import auth from '../../auth'
 
 const Login = () => {
     const [loginStatus, setloginStatus] = useState('');
@@ -77,7 +78,7 @@ const Login = () => {
                                     setPassword(event.target.value);
                                 }}
                             />
-                            <p>Don't have an account yet? <a onClick={() => history.push('/register')}>Click here</a>
+                            <p>Don't have an account yet? <a href='/register' onClick={() => history.push('/register')}>Click here</a>
                             </p>
                             <Button disabled={!password || !email} type="submit" variant="outlined">Login</Button>
                         </div>

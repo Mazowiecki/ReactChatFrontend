@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import {BrowserRouter, Route} from 'react-router-dom'
+import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Login from "./Components/Login/Login";
 import {createMuiTheme} from '@material-ui/core/styles';
 import {ThemeProvider} from '@material-ui/styles';
@@ -11,6 +11,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import {createStore} from 'redux';
 import allReducers from './Redux/reducers';
 import {Provider} from 'react-redux'
+import ProtectedRoute from "./protected.route";
 
 const darkTheme = createMuiTheme({
     palette: {
@@ -29,9 +30,11 @@ ReactDOM.render((
             <ThemeProvider theme={darkTheme}>
                 <Provider store={store}>
                     <BrowserRouter>
-                        <Route path="/" exact component={Login}/>
-                        <Route path="/register" component={Register}/>
-                        <Route path="/dashboard" component={Dashboard}/>
+                        <Switch>
+                            <Route path="/" exact component={Login}/>
+                            <Route path="/register" component={Register}/>
+                            <ProtectedRoute path="/dashboard" component={Dashboard}/>
+                        </Switch>
                     </BrowserRouter>
                 </Provider>
             </ThemeProvider>

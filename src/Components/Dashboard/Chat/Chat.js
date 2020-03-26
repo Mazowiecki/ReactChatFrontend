@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container';
 import './Chat.css'
 import Post from "./Post/Post";
 import Form from "./Form/Form";
+import auth from '../../../auth'
 
 const Chat = props => {
     const token = localStorage.getItem('token');
@@ -24,6 +25,7 @@ const Chat = props => {
         })
             .then(response => response.json())
             .then(res => {
+                props.updateUser(res.authData.user);
                 setPosts(res.response)
             });
     };
@@ -45,6 +47,8 @@ const Chat = props => {
             .then(response => {
                 if (response.status === 200) {
                     getPosts();
+                } else {
+                    auth.noAuthentication()
                 }
             })
     };

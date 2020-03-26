@@ -72,7 +72,7 @@ const Register = () => {
                                     setPassword(event.target.value);
                                 }}
                             />
-                            <p>Already have an account yet? <a onClick={() => history.push('/')}>Click here</a></p>
+                            <p>Already have an account yet? <a href='/' onClick={() => history.push('/')}>Click here</a></p>
                             <Button disabled={!password || !email} type="submit" variant="outlined">Register</Button>
                         </div>
                     </form>
