@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from "react-redux";
 import {setCurrentUserDate} from "../../Redux/actions";
-import auth from '../../auth'
 
 const Login = () => {
     const [loginStatus, setloginStatus] = useState('');

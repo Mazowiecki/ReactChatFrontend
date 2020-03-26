@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
+import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
 import auth from './auth'
 
@@ -9,10 +9,8 @@ const ProtectedRoute = ({component: Component, ...rest}) => {
         <Route {...rest}
                render={props => {
                    if (auth.isAuthenticated()) {
-                       console.log('tru')
                     return <Component {...props}/>
                    } else {
-                       console.log('fals')
                        return <Redirect to={
                            {
                                pathname: '/',
